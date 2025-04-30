@@ -1,0 +1,32 @@
+﻿## This is logged by the app
+Exception thrown at DeliverInvoiceBatch: One or more errors occurred..
+
+## This is logged by the Job System and the exception is not rethrown.
+System.AggregateException: One or more errors occurred. ---> System.AggregateException: One or more errors occurred. ---> System.Exception: Error from child 1
+   at Pocs.OriginalBehavior.Program.<SendBatchEmail>d__5.MoveNext() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 72
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at Pocs.OriginalBehavior.Program.LoopInvoicesAndSend() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 53
+   at Pocs.OriginalBehavior.Program.<>c.<SplitInvoices>b__3_0() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 47
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at Pocs.OriginalBehavior.Program.AppJob() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 41
+   at Pocs.OriginalBehavior.Program.Main() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 14
+---> (Inner Exception #0) System.AggregateException: One or more errors occurred. ---> System.Exception: Error from child 1
+   at Pocs.OriginalBehavior.Program.<SendBatchEmail>d__5.MoveNext() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 72
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at Pocs.OriginalBehavior.Program.LoopInvoicesAndSend() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 53
+   at Pocs.OriginalBehavior.Program.<>c.<SplitInvoices>b__3_0() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 47
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+---> (Inner Exception #0) System.Exception: Error from child 1
+   at Pocs.OriginalBehavior.Program.<SendBatchEmail>d__5.MoveNext() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 72<---
+
+---> (Inner Exception #1) System.Exception: Error from child 2
+   at Pocs.OriginalBehavior.Program.<SendBatchEmail>d__5.MoveNext() in C:\repos\POCs\Pocs.AggregateExceptionFlatten\Program.cs:line 72<---
+<---
+
+Press any key to continue . . .
