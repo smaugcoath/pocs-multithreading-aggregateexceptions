@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pocs.AggregateExceptionFlatten", "Pocs.AggregateExceptionFlatten.csproj", "{47461045-8F6B-4770-BB46-FCA6B356FBB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47461045-8F6B-4770-BB46-FCA6B356FBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47461045-8F6B-4770-BB46-FCA6B356FBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47461045-8F6B-4770-BB46-FCA6B356FBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47461045-8F6B-4770-BB46-FCA6B356FBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {923B6092-3CBD-4242-8789-28E981E855D1}
+	EndGlobalSection
+EndGlobal
