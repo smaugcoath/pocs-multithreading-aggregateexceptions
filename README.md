@@ -8,7 +8,33 @@ In certain production systems, when asynchronous tasks are nested and executed i
 
 ## Branches
 - **logging-original-behavior**: Contains the original implementation that mirrors the existing issue in the current system.
-- **logging-improved-visibility**: Contains an improved version that properly handles and logs nested exceptions for better traceability and debugging. The key goal was not to modify the original application logic—given its complexity and entanglement—but to enhance the visibility and quality of logs without altering functional behavior.
+- **logging-improved-visibility**: Contains an improved version that properly handles and logs nested exceptions for better traceability and debugging. The key goal was not to modify the original application logicï¿½given its complexity and entanglementï¿½but to enhance the visibility and quality of logs without altering functional behavior.
+
+## Before vs After
+
+Switching between the two branches produces the same nested-task failure, logged two very different ways.
+
+### Before (this branch, `logging-original-behavior`)
+`AppJob` catches the exception from `Task.WaitAll` and logs only `exception.InnerException.Message`. Because the real failure is wrapped in nested `AggregateException`s, that message is just the generic wrapper text â€” the actual errors thrown by `Send` never make it into the log:
+
+```
+Exception thrown: One or more errors occurred..
+```
+
+The full captured output, including the real (buried) inner exceptions that this log line hides, is in [`current-expected-log.txt`](./current-expected-log.txt).
+
+### After (`logging-improved-visibility` branch)
+The same failure is caught as an `AggregateException`, flattened with `.Flatten()`, and each inner exception is logged on its own:
+
+```
+System.Exception: Error from child 1
+System.Exception: Error from child 2
+```
+
+The full output â€” every real exception with its own message and stack trace â€” is in `fixed-log.txt` on that branch.
+
+### Why this matters
+Nested `Task`/`Task.WaitAll` calls wrap failures in layer after layer of `AggregateException`. Logging only `ex.Message` (or an unflattened `ex.InnerException.Message`) silently discards the actual root cause: instead of the real exception, whoever reads the log just sees "One or more errors occurred." Flattening before logging is a one-line fix that turns a useless log entry into an actionable one.
 
 ## Structure
 - `Program.cs`: Entry point and core simulation of the task execution and error handling logic.
